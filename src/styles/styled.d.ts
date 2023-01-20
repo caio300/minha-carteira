@@ -16,7 +16,7 @@ declare module 'styled-components' {
   
       sucesse: string,
       info: string,
-      warnig: string,
+      warning: string,
 
     }
   }

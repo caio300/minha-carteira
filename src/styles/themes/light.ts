@@ -12,6 +12,6 @@ export default {
 
     sucesse: '#03bb85',
     info: '#3b5998',
-    warnig: '#ff6961',
+    warning: '#ff6961',
   },
 }
