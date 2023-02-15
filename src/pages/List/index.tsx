@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from  'react';
+import { v4 as uuidv4 } from 'uuid';
 import { useParams } from 'react-router-dom';
 import { Container, Content, Filters } from './styles';
 
@@ -10,7 +11,7 @@ import gains from '../../repositories/gains'
 import expenses from '../../repositories/expenses';
 import formatCurrency from '../../utils/formatCurrency';
 import formatDate from '../../utils/fomratDate';
-
+import listOfMonths from '../../utils/months';
 
 interface IData {
   id: string;
@@ -40,6 +41,37 @@ const List: React.FC = () => {
     return type === 'entry-balance' ? gains : expenses;
   }, [type]);
 
+  const months = useMemo(() => {
+
+    return listOfMonths.map((month, index) => {
+      return {
+        value: index + 1,
+        label: month,
+      };
+    });
+  },[]);
+
+  const years = useMemo(() => {
+    let uniqueYears: number[] = [];
+
+    listData.forEach(item => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+
+      if(!uniqueYears.includes(year)) {
+        uniqueYears.push(year);
+      }
+    });
+
+    return uniqueYears.map(year => {
+      return {
+        value: year,
+        label: year,
+      }
+    });
+
+  },[listData]);
+
   useEffect(() => {
 
     const filteredData = listData.filter(item => {
@@ -52,7 +84,7 @@ const List: React.FC = () => {
 
     const formatedData = filteredData.map(item => {
       return {
-        id: String(new Date().getTime()) + item.amount,
+        id: uuidv4(),
         description: item.description,
         amountFormatted: formatCurrency(Number(item.amount)),
         frequency: item.frequency,
@@ -64,17 +96,6 @@ const List: React.FC = () => {
     setData(formatedData);
   }, [listData, monthSelected, yearSelected]);
 
-  const months = [
-    {value: 7, label: 'Julho'},
-    {value: 8, label: 'Agosto'},
-    {value: 9, label: 'Setembro'},
-  ];
-
-  const years = [
-    {value: 2019, label: 2019},
-    {value: 2018, label: 2018},
-    {value: 2020, label: 2020},
-  ];
 
   return (
     <Container>
