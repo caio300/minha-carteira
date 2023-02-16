@@ -35,13 +35,13 @@ const List: React.FC = () => {
      ?
      {
         title: 'Entrada',
-        lineColor: '#F7931B',
+        lineColor: '#4E41F0',
         data: gains,
       }
       :
       {
         title: 'Saída',
-        lineColor: '##E44C4E',
+        lineColor: '#E44C4E',
         data: expenses,
       }
   }, [movimentType])
