@@ -4,6 +4,7 @@ import ContentHeader from '../../components/ContentHeader';
 import MessageBox from '../../components/MessageBox';
 import SelectInput from '../../components/SelectInput';
 import WalletBox from '../../components/WalletBox';
+import PieChart from '../../components/PieChart';
 
 import expenses from '../../repositories/expenses';
 import gains from '../../repositories/gains';
@@ -18,15 +19,10 @@ import {
   Content
 } from './styles';
 
+
 const Dashboard: React.FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
   const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
-
-  const options = [
-    {value: 'Rodrigo', label: 'Rodrigo'},
-    {value: 'Maria', label: 'Maria'},
-    {value: 'Ana', label: 'Rodrigo'},
-  ];
 
   const months = useMemo(() => {
 
@@ -110,7 +106,7 @@ const Dashboard: React.FC = () => {
         icon: sadImg,
       }
     }
-    else if(totalBalance == 0) {
+    else if(totalBalance === 0) {
       return {
         title: 'Ufaa!',
         description: 'Neste mês você gastou exatamente o que ganhou.',
@@ -189,6 +185,8 @@ const Dashboard: React.FC = () => {
           footerText={message.footerText}
           icon={message.icon}
         />
+
+        <PieChart />
       </Content>
     </Container>
   )
