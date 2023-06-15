@@ -6,7 +6,7 @@ type IInputProps = InputHTMLAttributes<HTMLInputElement>
 
 const Input: React.FC<IInputProps> = ({ ...rest }) => {
   return (
-    <Container { ...rest }/>
+    <Container { ...rest } />
 
   )
 }

@@ -8,5 +8,5 @@ export const Container = styled.input`
     padding: 10px;
 
     border-radius: 5px;
-    
+
 `;
