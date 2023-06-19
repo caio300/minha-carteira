@@ -316,14 +316,16 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container>
-      < ContentHeader title="Dashboard" lineColor='#F7931B'>
+      <ContentHeader title="Dashboard" lineColor='#F7931B'>
         <SelectInput
             options={months}
-            onChange={(e) => handleMonthSelected(e.target.value)} defaultValue={monthSelected}
+            onChange={(e) => handleMonthSelected(e.target.value)}
+            defaultValue={monthSelected}
           />
           <SelectInput
             options={years}
-            onChange={(e) => handleYearSelected(e.target.value)} defaultValue={yearSelected}
+            onChange={(e) => handleYearSelected(e.target.value)}
+            defaultValue={yearSelected}
           />
       </ContentHeader>
 
