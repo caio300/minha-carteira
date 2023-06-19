@@ -14,11 +14,15 @@ import {
   Title,
   MenuContainer,
   MenuItemLink,
+  MenuItemButton
 } from './styles';
 
+import { useAuth } from '../../hooks/auth';
 
 
 const Aside: React.FC = () => {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <Header>
@@ -42,10 +46,10 @@ const Aside: React.FC = () => {
           Saídas
         </MenuItemLink>
 
-        <MenuItemLink href='#'>
+        <MenuItemButton onClick={signOut}>
           <MdExitToApp />
           Sair
-        </MenuItemLink>
+        </MenuItemButton>
       </MenuContainer>
     </Container>
   )
