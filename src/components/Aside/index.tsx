@@ -1,5 +1,7 @@
 import React, { useState } from  'react';
 import logoImg from '../../assets/logo.svg';
+import Toggle from '../Toggle';
+
 import {
   MdDashboard,
   MdArrowDownward,
@@ -18,18 +20,29 @@ import {
   MenuItemLink,
   MenuItemButton,
   ToggleMenu,
+  ThemeToggleFooter,
 } from './styles';
 
 import { useAuth } from '../../hooks/auth';
+import { useTheme } from '../../hooks/theme';
+
 
 
 const Aside: React.FC = () => {
   const { signOut } = useAuth();
+  const { toggleTheme, theme  } = useTheme();
 
   const [toggleMenuIsOpen, setToggleMenuIsOpen] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(() => theme.title === 'dark' ? true : false);
+  
 
   const handleToggleMenu = () => {
     setToggleMenuIsOpen(!toggleMenuIsOpen);
+  }
+
+  const handleChangeTheme = () => {
+     setDarkTheme(!darkTheme);
+     toggleTheme();
   }
 
   return (
@@ -64,6 +77,15 @@ const Aside: React.FC = () => {
           Sair
         </MenuItemButton>
       </MenuContainer>
+
+      <ThemeToggleFooter menuIsOpen={toggleMenuIsOpen}>
+        <Toggle
+            labelLeft='Light'
+            labelRight='Dark'
+            checked={darkTheme}
+            onChange={handleChangeTheme}
+        />
+      </ThemeToggleFooter>
     </Container>
   )
 }
